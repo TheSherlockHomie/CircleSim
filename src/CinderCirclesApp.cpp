@@ -29,8 +29,8 @@ void CinderCirclesApp::setup()
 	white = 1.0f;
 	float rad = 20.0f;
 	float mass = 1.0f;
-	vec2 location((get_random() * (toPixels(getWindowWidth()) - 2 * rad) + rad), (get_random() * (toPixels(getWindowHeight()) - rad)) + rad);
-	//vec2 location((toPixels(getWindowWidth() / 2.0f), toPixels(getWindowHeight())));
+	//vec2 location((get_random() * (toPixels(getWindowWidth()) - 2 * rad) + rad), (get_random() * (toPixels(getWindowHeight()) - rad)) + rad);
+	vec2 location((toPixels(getWindowWidth() / 2.0f), toPixels(getWindowHeight())));
 	a = Circle(rad, mass, location);
 }
 

@@ -19,6 +19,8 @@ class Circle {
 
 	std::list<ci::vec2> forces;
 	ci::vec2 netForce;
+
+	ci::vec2 calculateAirDrag();
 public:
 	Circle();
 	Circle(float r, float m, ci::vec2 loc = ci::vec2(0.0f, 0.0f), ci::vec2 v = ci::vec2(0.0f, 0.0f), ci::vec2 a = ci::vec2(0.0f,0.0f), ci::Color c = ci::Color(1, 0, 0));

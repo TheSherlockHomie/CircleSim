@@ -31,6 +31,8 @@ void Circle::calculateForces()
 {
 	forces.clear();
 	//TODO
+
+	//forces.push_back(calculateAirDrag()); //Air Drag
 	ci::vec2 Fg(0, -1.0f * mass * 9.8f); //Gravitational force
 	forces.push_back(Fg);
 	
@@ -41,10 +43,25 @@ void Circle::calculateForces()
 void Circle::calculateAVP(float timeStep)
 {
 	ci::vec2 last_accel = accel;
-	location += (velocity * timeStep) + last_accel * (0.5f * timeStep * timeStep); //x = ut + 0.5*a*t^2
+	location += ((velocity * timeStep) + last_accel * (0.5f * timeStep * timeStep)) / 1000.0f; //x = ut + 0.5*a*t^2
 	ci::vec2 new_accel = netForce / mass;
 	accel = (last_accel + new_accel) / 2.0f;
 	velocity += accel * timeStep;
+}
+
+//returns air drag according to en.wikipedia.org/wiki/Drag_equation
+ci::vec2 Circle::calculateAirDrag()
+{
+	float rho = 1.225f;
+	float Cd = 4.6f;
+	float A = radius; //set up constants
+	ci::vec2 airDrag(0.0f, 0.0f);
+	if (velocity.x != 0.0f || velocity.y != 0.0f)
+	{
+		float x = ci::length(velocity);
+		airDrag = velocity * velocity * velocity * (-0.5f * rho) * (Cd * A) / x;
+	}
+	return airDrag;
 }
 
 void Circle::drawCircle()
