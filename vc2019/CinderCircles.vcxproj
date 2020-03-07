@@ -104,9 +104,11 @@
   <ItemGroup />
   <ItemGroup>
     <ClCompile Include="..\src\CinderCirclesApp.cpp" />
+    <ClCompile Include="..\src\Circle.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\include\Resources.h" />
+    <ClInclude Include="..\src\Circle.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets" />
