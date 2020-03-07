@@ -24,7 +24,9 @@ class CinderCirclesApp : public App {
 void CinderCirclesApp::setup()
 {
 	white = 1.0f;
-	a = Circle(vec2(get_random()*getWindowWidth(), get_random()*getWindowHeight()), 20.0, Color(1, 0, 0));
+	float rad = 20.0f;
+	vec2 location((get_random() * (toPixels(getWindowWidth()) - 2 * rad) + rad), (get_random() * (toPixels(getWindowHeight()) - rad)) + rad);
+	a = Circle(location, rad, Color(1, 0, 0));
 }
 
 void CinderCirclesApp::mouseDown( MouseEvent event )
