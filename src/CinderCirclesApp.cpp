@@ -25,8 +25,9 @@ void CinderCirclesApp::setup()
 {
 	white = 1.0f;
 	float rad = 20.0f;
+	float mass = 1.0f;
 	vec2 location((get_random() * (toPixels(getWindowWidth()) - 2 * rad) + rad), (get_random() * (toPixels(getWindowHeight()) - rad)) + rad);
-	a = Circle(location, rad, Color(1, 0, 0));
+	a = Circle(rad, mass, location);
 }
 
 void CinderCirclesApp::mouseDown( MouseEvent event )
@@ -44,6 +45,7 @@ void CinderCirclesApp::draw()
 	a.drawCircle();
 }
 
+//return uniformly distributed random float between 0.0f and 1.0f
 float get_random()
 {
 	std::random_device rdev{};
