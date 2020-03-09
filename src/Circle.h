@@ -28,6 +28,8 @@ public:
 	void calculateForces();
 	void calculateAVP(float timeStep);
 
+	void edgeCollision();
+
 	void drawCircle();
 };
 

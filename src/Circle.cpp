@@ -64,6 +64,34 @@ ci::vec2 Circle::calculateAirDrag()
 	return airDrag;
 }
 
+void Circle::edgeCollision()
+{
+	const float e = 1.0f; //coeff of restitution with walls
+
+	float topEdge = ci::app::toPixels(ci::app::getWindowHeight()) - radius,
+		bottomEdge = 0.0f + radius,
+		leftEdge = 0.0f + radius,
+		rightEdge = ci::app::toPixels(ci::app::getWindowWidth()) - radius;
+
+	//check for collision
+	if (location.y >= topEdge) //collision with top edge
+	{
+		velocity.y = -1.0f * e * velocity.y;
+	}
+	else if (location.y >= rightEdge)
+	{
+		velocity.x = -1.0f * e * velocity.x;
+	}
+	else if (location.y <= bottomEdge)
+	{
+		velocity.y = -1.0f * e * velocity.y;
+	}
+	else if (location.x <= leftEdge)
+	{
+		velocity.x = -1.0f * e * velocity.x;
+	}
+}
+
 void Circle::drawCircle()
 {
 	ci::gl::color(color);
