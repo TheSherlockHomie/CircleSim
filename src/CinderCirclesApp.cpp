@@ -42,6 +42,7 @@ void CinderCirclesApp::update()
 {
 	float mCurrentTime = getElapsedSeconds();
 	float deltaTime = mCurrentTime - mlastTime;
+	mlastTime = mCurrentTime;
 
 	a.calculateForces();
 	a.calculateAVP(deltaTime);
