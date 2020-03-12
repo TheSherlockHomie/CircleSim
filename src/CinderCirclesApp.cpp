@@ -20,11 +20,14 @@ class CinderCirclesApp : public App {
 		float white;
 		Circle a;
 		float mlastTime;
+		const float dt = 1.0 / (60.0 * 3.0);
+		float accumulator;
 };
 
 void CinderCirclesApp::setup()
 {
 	mlastTime = getElapsedSeconds();
+	accumulator = 0;
 
 	white = 1.0f;
 	float rad = 20.0f;
@@ -44,10 +47,17 @@ void CinderCirclesApp::update()
 	float deltaTime = mCurrentTime - mlastTime;
 	mlastTime = mCurrentTime;
 
-	a.edgeCollision();
-	
-	a.calculateForces();
-	a.calculateAVP(deltaTime);
+	accumulator += deltaTime;
+
+	do
+	{
+		a.edgeCollision();
+
+		a.calculateForces();
+		a.calculateAVP(deltaTime);
+
+		accumulator -= dt;
+	} while (accumulator >= dt);
 }
 
 void CinderCirclesApp::draw()
