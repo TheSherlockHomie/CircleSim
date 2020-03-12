@@ -44,6 +44,10 @@ void Circle::calculateAVP(float timeStep)
 {
 	ci::vec2 last_accel = accel;
 	location += ((velocity * timeStep) + last_accel * (0.5f * timeStep * timeStep)); //x = ut + 0.5*a*t^2
+	if (location.x > ci::app::toPixels(ci::app::getWindowWidth()) - radius)
+		location.x = ci::app::toPixels(ci::app::getWindowWidth()) - radius;
+	if (location.y > ci::app::toPixels(ci::app::getWindowHeight()) - radius)
+		location.y = ci::app::toPixels(ci::app::getWindowHeight()) - radius;
 	ci::vec2 new_accel = netForce / mass;
 	accel = (last_accel + new_accel) / 2.0f;
 	velocity += accel * timeStep;
